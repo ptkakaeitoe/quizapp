@@ -11,21 +11,12 @@ let questionNumber = 1;
 
 async function callOpenAI(prompt) {
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("/api/callOpenAI", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.API_KEY}`, // Reference the secret key
       },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: "You are a helpful assistant." },
-          { role: "user", content: prompt },
-        ],
-        max_tokens: 150,
-        temperature: 0.7,
-      }),
+      body: JSON.stringify({ prompt }),
     });
 
     if (!response.ok) {

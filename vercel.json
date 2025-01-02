@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "name": "quiz-app",
+  "builds": [
+    {
+      "src": "api/callOpenAI.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/callOpenAI",
+      "dest": "api/callOpenAI.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "API_KEY": "@api_key"
+  }
+}
